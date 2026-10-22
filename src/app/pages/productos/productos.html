@@ -1,0 +1,46 @@
+<div class="crud-container">
+  <h2>Gestión de Productos</h2>
+
+  <form (ngSubmit)="guardar()" class="producto-form">
+    <div class="form-grid">
+      <input type="text" placeholder="Nombre" [(ngModel)]="productoActual.nombre" name="nombre" required>
+      <input type="text" placeholder="Categoría" [(ngModel)]="productoActual.categoria" name="categoria" required>
+      <input type="number" placeholder="Precio" [(ngModel)]="productoActual.precio" name="precio" required>
+      <input type="number" placeholder="Stock" [(ngModel)]="productoActual.stock" name="stock" required>
+      <input type="text" placeholder="Marca" [(ngModel)]="productoActual.marca" name="marca" required>
+      <input type="text" placeholder="Código de Barras" [(ngModel)]="productoActual.codigo_barras" name="codigo_barras" required>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-primary">{{ modoEdicion ? 'Actualizar' : 'Guardar' }}</button>
+      <button type="button" class="btn-secondary" *ngIf="modoEdicion" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+
+  <table class="productos-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Marca</th>
+        <th>Precio</th>
+        <th>Stock</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prod of productos">
+        <td>{{ prod.id }}</td>
+        <td>{{ prod.nombre }}</td>
+        <td>{{ prod.categoria }}</td>
+        <td>{{ prod.marca }}</td>
+        <td>S/ {{ prod.precio }}</td>
+        <td>{{ prod.stock }}</td>
+        <td>
+          <button (click)="editar(prod)" class="btn-edit">Editar</button>
+          <button (click)="eliminar(prod.id)" class="btn-delete">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

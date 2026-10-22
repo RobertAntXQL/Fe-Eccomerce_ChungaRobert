@@ -1,0 +1,32 @@
+<div class="app-layout" [class.is-login]="isLoginPage">
+  
+  <!-- Sidebar -->
+  <nav class="sidebar" *ngIf="!isLoginPage" [class.active]="menuOpen">
+    <div class="sidebar-header">
+      <h3>Mi Tienda</h3>
+      <p class="user-badge">👤 Usuario: Robert Chunga</p>
+    </div>
+    <ul class="sidebar-menu">
+      <li>
+        <a routerLink="/productos" (click)="menuOpen = false">📦 Productos</a>
+      </li>
+      <li>
+        <a href="javascript:void(0)" (click)="logout()">🚪 Cerrar Sesión</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Contenido Principal -->
+  <main class="main-content">
+    <!-- Menú Hamburguesa para móviles -->
+    <header class="mobile-header" *ngIf="!isLoginPage">
+      <button class="menu-btn" (click)="toggleMenu()">☰ Menú</button>
+      <h2>Gestión T2</h2>
+    </header>
+    
+    <!-- Aquí se inyectan el Login o el CRUD dinámicamente -->
+    <div class="content-area">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>
